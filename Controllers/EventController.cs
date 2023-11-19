@@ -1,21 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ReadingClubWebApp.Data;
+using ReadingClubWebApp.Interfaces;
 using ReadingClubWebApp.Models;
 
 namespace ReadingClubWebApp.Controllers
 {
     public class EventController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IEventRepository _eventRepository;
 
-        public EventController(ApplicationDbContext context)
+        public EventController(IEventRepository eventRepository)
         {
-            _context = context;
+            _eventRepository = eventRepository;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Event> events = _context.Events.ToList();
+            IEnumerable<Event> events = await _eventRepository.GetAll();
             return View(events);
+        }
+
+        public async Task<IActionResult> Detail(int id)
+        {
+            Event reading_event = await _eventRepository.GetByIdAsync(id);
+            return View(reading_event);
         }
     }
 }
