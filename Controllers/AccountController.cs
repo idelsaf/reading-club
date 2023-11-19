@@ -52,5 +52,44 @@ namespace ReadingClubWebApp.Controllers
             TempData["Error"] = "Wrong credentials. Please try again";
             return View(loginVM);
         }
+
+        public IActionResult Register()
+        {
+            var response = new RegisterViewModel();
+            return View(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel registerVM)
+        {
+            if (!ModelState.IsValid) return View(registerVM);
+
+            var user = await _userManager.FindByEmailAsync(registerVM.EmailAddress);
+            if (user != null)
+            {
+                TempData["Error"] = "This email address is already in use";
+                return View(registerVM);
+            }
+
+            var newUser = new AppUser()
+            {
+                Email = registerVM.EmailAddress,
+                UserName = registerVM.EmailAddress
+            };
+            var newUserResponse = await _userManager.CreateAsync(newUser, registerVM.Password);
+
+            if (newUserResponse.Succeeded)
+                await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+
+            return RedirectToAction("Index", "Event");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Event");
+        }
+
     }
 }
