@@ -1,6 +1,6 @@
 ﻿@using ReadingClubWebApp.Data.Enum
 @using ReadingClubWebApp.ViewModels
-@model EditClubViewModel
+@model EditEventViewModel
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -20,11 +20,11 @@
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="ClubCategory">Category</label>
-        <select asp-for="ClubCategory" asp-items="@Html.GetEnumSelectList<ClubCategory>()" class="form-control">
+        <label asp-for="EventCategory">Category</label>
+        <select asp-for="EventCategory" asp-items="@Html.GetEnumSelectList<EventCategory>()" class="form-control">
             <option selected="selected" value="">--Select--</option>
         </select>
-        <span asp-validation-for="ClubCategory" class="text-danger"></span>
+        <span asp-validation-for="EventCategory" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Address.Country">Country</label>

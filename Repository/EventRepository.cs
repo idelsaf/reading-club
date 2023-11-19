@@ -35,6 +35,11 @@ namespace ReadingClubWebApp.Repository
             return await _context.Events.Include(i => i.Address).FirstOrDefaultAsync(i => i.Id == id);
         }
 
+        public async Task<Event> GetByIdAsyncNoTracking(int id)
+        {
+            return await _context.Events.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+        }
+
         public async Task<IEnumerable<Event>> GetAllEventsByCity(string city)
         {
             return await _context.Events.Where(c => c.Address.City.Contains(city)).ToListAsync();
