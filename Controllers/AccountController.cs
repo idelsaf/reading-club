@@ -41,7 +41,7 @@ namespace ReadingClubWebApp.Controllers
                     
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index", "Event");
+                        return RedirectToAction("Index", "Book");
                     }
                 }
 
@@ -81,14 +81,14 @@ namespace ReadingClubWebApp.Controllers
             if (newUserResponse.Succeeded)
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
 
-            return RedirectToAction("Index", "Event");
+            return RedirectToAction("Index", "Book");
         }
 
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Event");
+            return RedirectToAction("Index", "Book");
         }
 
     }

@@ -155,37 +155,12 @@ namespace ReadingClubWebApp.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ReadingClubWebApp.Models.Address", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Addresses");
-                });
-
             modelBuilder.Entity("ReadingClubWebApp.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("BooksNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -240,8 +215,6 @@ namespace ReadingClubWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -253,7 +226,7 @@ namespace ReadingClubWebApp.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("ReadingClubWebApp.Models.Club", b =>
+            modelBuilder.Entity("ReadingClubWebApp.Models.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -261,48 +234,13 @@ namespace ReadingClubWebApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ClubCategory")
-                        .HasColumnType("int");
+                    b.Property<string>("Author")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Clubs");
-                });
-
-            modelBuilder.Entity("ReadingClubWebApp.Models.Event", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EventCategory")
+                    b.Property<int>("Genre")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -316,11 +254,9 @@ namespace ReadingClubWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
-
                     b.HasIndex("UserId");
 
-                    b.ToTable("Events");
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -374,54 +310,18 @@ namespace ReadingClubWebApp.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ReadingClubWebApp.Models.AppUser", b =>
+            modelBuilder.Entity("ReadingClubWebApp.Models.Book", b =>
                 {
-                    b.HasOne("ReadingClubWebApp.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("ReadingClubWebApp.Models.Club", b =>
-                {
-                    b.HasOne("ReadingClubWebApp.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ReadingClubWebApp.Models.AppUser", "AppUser")
-                        .WithMany("Clubs")
+                        .WithMany("Books")
                         .HasForeignKey("UserId");
-
-                    b.Navigation("Address");
-
-                    b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("ReadingClubWebApp.Models.Event", b =>
-                {
-                    b.HasOne("ReadingClubWebApp.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ReadingClubWebApp.Models.AppUser", "AppUser")
-                        .WithMany("Events")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Address");
 
                     b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("ReadingClubWebApp.Models.AppUser", b =>
                 {
-                    b.Navigation("Clubs");
-
-                    b.Navigation("Events");
+                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }

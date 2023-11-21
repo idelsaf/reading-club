@@ -14,18 +14,11 @@ namespace ReadingClubWebApp.Repository
             _context = context;
             _httpContextAccessor = httpContextAccessor;
         }
-        public async Task<List<Club>> GetAllUserClubs()
+        public async Task<List<Book>> GetAllUserBooks()
         {
             var curUser = _httpContextAccessor.HttpContext?.User;
-            var userClubs = _context.Clubs.Where(r => r.AppUser.Id == curUser.ToString());
-            return userClubs.ToList();
-        }
-
-        public async Task<List<Event>> GetAllUserEvents()
-        {
-            var curUser = _httpContextAccessor.HttpContext?.User;
-            var userEvents = _context.Events.Where(r => r.AppUser.Id == curUser.ToString());
-            return userEvents.ToList();
+            var userBooks = _context.Books.Where(r => r.AppUser.Id == curUser.ToString());
+            return userBooks.ToList();
         }
     }
 }

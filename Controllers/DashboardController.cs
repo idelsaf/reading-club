@@ -15,12 +15,10 @@ namespace ReadingClubWebApp.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var userEvents = await _dashboardRepository.GetAllUserEvents();
-            var userClubs = await _dashboardRepository.GetAllUserClubs();
+            var userBooks = await _dashboardRepository.GetAllUserBooks();
             var dashboardViewModel = new DashboardViewModel()
             {
-                Events = userEvents,
-                Clubs = userClubs
+                Books = userBooks
             };
             return View(dashboardViewModel);
         }

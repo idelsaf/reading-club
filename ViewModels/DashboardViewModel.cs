@@ -4,7 +4,6 @@ namespace ReadingClubWebApp.ViewModels
 {
     public class DashboardViewModel
     {
-        public List<Event> Events { get; set; }
-        public List<Club> Clubs { get; set; }
+        public List<Book> Books { get; set; }
     }
 }

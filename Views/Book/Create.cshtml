@@ -1,11 +1,6 @@
 ﻿@using ReadingClubWebApp.Data.Enum
 @using ReadingClubWebApp.ViewModels
-@model CreateEventViewModel
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+@model CreateBookViewModel
 
 <form method="post" asp-action="Create" enctype="multipart/form-data">
     <div class="form-group">
@@ -14,31 +9,27 @@
         <span asp-validation-for="Title" class="class-danger"></span>
     </div>
     <div class="form-group">
+        <label asp-for="Author">Author</label>
+        <input asp-for="Author" class="form-control" placeholder="Author">
+        <span asp-validation-for="Author" class="class-danger"></span>
+    </div>
+    <div class="form-group">
         <label asp-for="Description">Description</label>
         <input asp-for="Description" class="form-control" placeholder="Description">
         <span asp-validation-for="Description" class="class-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="EventCategory">Category</label>
-        <select asp-for="EventCategory" asp-items="@Html.GetEnumSelectList<EventCategory>()" class="form-control form-control-lg">
-            <option>--Select--</option>
+        <label asp-for="Genre">Genre</label>
+        <select asp-for="Genre" asp-items="@Html.GetEnumSelectList<Genre>()" class="form-control form-control-lg">
+            <option>...</option>
         </select>
-        <span asp-validation-for="EventCategory" class="class-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Address.Country">Country</label>
-        <input asp-for="Address.Country" class="form-control" placeholder="Country">
-        <span asp-validation-for="Address.Country" class="class-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Address.City">City</label>
-        <input asp-for="Address.City" class="form-control" placeholder="City">
-        <span asp-validation-for="Address.City" class="class-danger"></span>
+        <span asp-validation-for="Genre" class="class-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Image">Image</label>
         <input asp-for="Image" type="file" class="form-control" placeholder="Image">
         <span asp-validation-for="Image" class="class-danger"></span>
     </div>
+    <h1></h1>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

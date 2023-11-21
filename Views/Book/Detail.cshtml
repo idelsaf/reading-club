@@ -1,36 +1,24 @@
-﻿@model Event
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model Book
 
 <div class="container">
-
-    <h1 class="my-4">
-        Page Heading
-        <small>Secondary Text</small>
-    </h1>
-
     <div class="row">
 
         <div class="col-md-8">
-            <img class="img-fluid" src="@Model.Image" alt="">
+            <img class="img" width="600" height="400" src="@Model.Image" alt="">
         </div>
 
         <div class="col-md-4">
-            <h3 class="my-3">@Model.Title</h3>
-            <p>@Model.Description</p>
-            <h3 class="my-3">Location</h3>
-            <ul>
-                <li>@Model.Address?.City</li>
-                <li>@Model.Address?.Country</li>
-                <li>@Model.EventCategory</li>
+            <h3 class="card-title">@Model.Title</h3>
+            <h5 class="card-title mb-2">@Model.Author</h5>
+            <p class="card-text">@Model.Description</p>
+            <h5 class="card-subtitle mb-2">Genre</h5>
+            <ul class="list-unstyled">
+                <li>@Model.Genre</li>
             </ul>
         </div>
 
     </div>
-    <h3 class="my-4">Related Projects</h3>
+    <h3 class="my-4">May be other books</h3>
 
     <div class="row">
 

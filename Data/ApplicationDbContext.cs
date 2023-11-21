@@ -10,8 +10,6 @@ namespace ReadingClubWebApp.Data
         {
                 
         }
-        public DbSet<Event> Events { get; set; }
-        public DbSet<Club> Clubs { get; set; }
-        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Book> Books { get; set; }
     }
 }
