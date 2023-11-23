@@ -23,7 +23,7 @@
         <select asp-for="Genre" asp-items="@Html.GetEnumSelectList<Genre>()" class="form-control form-control-lg">
             <option>...</option>
         </select>
-        <span asp-validation-for="Genre" class="class-danger"></span>
+        <span asp-validation-for="Genre" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Image">Image</label>

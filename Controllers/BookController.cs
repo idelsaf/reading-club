@@ -46,7 +46,8 @@ namespace ReadingClubWebApp.Controllers
                     Title = bookVM.Title,
                     Author = bookVM.Author,
                     Description = bookVM.Description,
-                    Image = result.Url.ToString()
+                    Image = result.Url.ToString(),
+                    Genre = bookVM.Genre
                 };
                 _bookRepository.Add(book);
                 return RedirectToAction("Index");
@@ -105,7 +106,9 @@ namespace ReadingClubWebApp.Controllers
                     Title = bookVM.Title,
                     Author = bookVM.Author,
                     Description = bookVM.Description,
-                    Image = photoResult.Url.ToString()
+                    Image = photoResult.Url.ToString(),
+                    Genre = bookVM.Genre
+
                 };
 
                 _bookRepository.Update(book);
