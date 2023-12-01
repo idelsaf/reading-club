@@ -16,8 +16,8 @@ namespace ReadingClubWebApp.Repository
         }
         public async Task<List<Book>> GetAllUserBooks()
         {
-            var curUser = _httpContextAccessor.HttpContext?.User;
-            var userBooks = _context.Books.Where(r => r.AppUser.Id == curUser.ToString());
+            var curUser = _httpContextAccessor.HttpContext?.User.GetUserId();
+            var userBooks = _context.Books.Where(r => r.AppUser.Id == curUser);
             return userBooks.ToList();
         }
     }

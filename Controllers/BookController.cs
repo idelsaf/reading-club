@@ -12,10 +12,13 @@ namespace ReadingClubWebApp.Controllers
     {
         private readonly IBookRepository _bookRepository;
         private readonly IPhotoService _photoService; 
-        public BookController(IBookRepository bookRepository, IPhotoService photoService)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public BookController(IBookRepository bookRepository, IPhotoService photoService, IHttpContextAccessor httpContextAccessor)
         {
             _bookRepository = bookRepository;
             _photoService = photoService;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<IActionResult> Index()
         {
@@ -31,7 +34,9 @@ namespace ReadingClubWebApp.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var curUserId = _httpContextAccessor.HttpContext?.User.GetUserId();
+            var createBookViewModel = new CreateBookViewModel { UserId = curUserId };
+            return View(createBookViewModel);
         }
 
         [HttpPost]
@@ -47,7 +52,8 @@ namespace ReadingClubWebApp.Controllers
                     Author = bookVM.Author,
                     Description = bookVM.Description,
                     Image = result.Url.ToString(),
-                    Genre = bookVM.Genre
+                    Genre = bookVM.Genre,
+                    UserId = bookVM.UserId
                 };
                 _bookRepository.Add(book);
                 return RedirectToAction("Index");

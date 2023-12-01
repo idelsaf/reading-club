@@ -88,13 +88,13 @@ namespace ReadingClubWebApp.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("AppUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("AspNetUserClaims", (string)null);
                 });
@@ -110,26 +110,26 @@ namespace ReadingClubWebApp.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("AppUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.Property<string>("UserId")
+                    b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("RoleId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("UserId", "RoleId");
+                    b.HasKey("AppUserId", "RoleId");
 
                     b.HasIndex("RoleId");
 
@@ -138,7 +138,7 @@ namespace ReadingClubWebApp.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.Property<string>("UserId")
+                    b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
@@ -150,7 +150,7 @@ namespace ReadingClubWebApp.Migrations
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId", "LoginProvider", "Name");
+                    b.HasKey("AppUserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
@@ -249,12 +249,12 @@ namespace ReadingClubWebApp.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Books");
                 });
@@ -272,7 +272,7 @@ namespace ReadingClubWebApp.Migrations
                 {
                     b.HasOne("ReadingClubWebApp.Models.AppUser", null)
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -281,7 +281,7 @@ namespace ReadingClubWebApp.Migrations
                 {
                     b.HasOne("ReadingClubWebApp.Models.AppUser", null)
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -296,7 +296,7 @@ namespace ReadingClubWebApp.Migrations
 
                     b.HasOne("ReadingClubWebApp.Models.AppUser", null)
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -305,7 +305,7 @@ namespace ReadingClubWebApp.Migrations
                 {
                     b.HasOne("ReadingClubWebApp.Models.AppUser", null)
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -314,7 +314,7 @@ namespace ReadingClubWebApp.Migrations
                 {
                     b.HasOne("ReadingClubWebApp.Models.AppUser", "AppUser")
                         .WithMany("Books")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
                 });
