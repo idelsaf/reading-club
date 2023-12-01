@@ -12,7 +12,6 @@
                             <tr class="bg-white">
                                 <th scope="row">
                                     <div class="media align-items-center">
-                                        @* <img alt="Image profile avatar" src="@user.ProfileImageUrl" class="avatar"> *@
                                         <div class="media-body">
                                             <span class="h6 mb-0">@user.UserName</span>
                                         </div>
@@ -28,10 +27,6 @@
                                     var genre = user.PreferredGenre == null ? "?" : user.PreferredGenre.ToString();
                                     var favorite = user.FavoriteBook == null ? "?" : user.FavoriteBook.ToString();
                                 }
-                            </tr>
-                            <tr class="table-divider">
-                                <th></th>
-                                <td></td>
                             </tr>
                         }
                     </tbody>

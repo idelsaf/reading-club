@@ -2,3 +2,13 @@
 @model UserDetailViewModel
 
 <h1>Profile</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h4 class="card-title m">Name: <a style="color:cadetblue">@Model.UserName</a></h4>
+            <h4 class="card-title">Preferred genre:  <a style="color:cadetblue">@Model.PreferredGenre</a></h4>
+            <h4 class="card-title">Favorite book:  <a style="color:cadetblue">@Model.FavoriteBook</a></h4>
+        </div>
+    </div>
+</div>
